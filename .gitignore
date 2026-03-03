@@ -1,0 +1,38 @@
+# Abhängigkeiten
+node_modules/
+
+# Build-Artefakte
+lib/
+tsc-out/
+
+# Credentials – NIEMALS committen!
+src/google-auth.ts.local
+*.env
+.env*
+credentials.json
+token.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporäre Dateien
+*.tmp
+*.bak
+
+# Git
+.git/
+.claude/
+
+PRD.md
+

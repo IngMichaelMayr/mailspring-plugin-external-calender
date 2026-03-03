@@ -1,0 +1,31 @@
+{
+  "name": "google-calendar",
+  "version": "1.0.0",
+  "title": "Google Calendar",
+  "description": "Native Google Calendar integration for Mailspring",
+  "main": "./lib/main",
+  "engines": {
+    "mailspring": ">=1.6.3"
+  },
+  "windowTypes": {
+    "default": true
+  },
+  "scripts": {
+    "build": "tsc && webpack --mode production",
+    "build:dev": "tsc && webpack --mode development",
+    "watch": "tsc --watch",
+    "clean": "rm -rf lib tsc-out"
+  },
+  "dependencies": {
+    "google-auth-library": "^8.9.0",
+    "googleapis": "^105.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.18.0",
+    "@types/react": "^16.14.0",
+    "dotenv": "^17.3.1",
+    "typescript": "^5.0.0",
+    "webpack": "^5.105.2",
+    "webpack-cli": "^6.0.1"
+  }
+}

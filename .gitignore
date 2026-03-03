@@ -10,7 +10,7 @@ dist/
 # Credentials – NIEMALS committen!
 src/google-auth.ts.local
 *.env
-.env*
+.env
 credentials.json
 token.json
 

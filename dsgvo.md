@@ -199,3 +199,209 @@ Für datenschutzrechtliche Anfragen wenden Sie sich an den Betreiber des Plugins
 - Google-Sicherheitseinstellungen: https://myaccount.google.com/security
 - Daten-Export (Takeout): https://takeout.google.com
 - OAuth2-App-Berechtigungen verwalten: https://myaccount.google.com/permissions
+
+---
+
+---
+
+# Privacy Policy (GDPR / DSGVO) *(English)*
+
+**Plugin:** `mailspring-google-calendar-plugin`
+**Platform:** Mailspring Desktop Client
+**Last updated:** March 2026
+**Legal basis:** EU General Data Protection Regulation (GDPR / DSGVO), applicable since 25 May 2018
+
+---
+
+## 1. Controller
+
+This plugin is a locally installed open-source tool without its own server infrastructure. The controller within the meaning of the GDPR is the person who installs and operates the plugin (hereinafter referred to as the **operator**).
+
+If the plugin is used within an organisation, the responsible organisational entity must be designated as the controller within the meaning of Art. 4(7) GDPR.
+
+---
+
+## 2. Purpose and Legal Basis of Processing
+
+The plugin integrates Google Calendar into the Mailspring desktop client. Its purpose is to display, manage, and create calendar events from emails.
+
+| Processing activity | Legal basis |
+|---|---|
+| Authentication via Google OAuth2 | Art. 6(1)(a) GDPR (consent) |
+| Synchronisation of calendar and event data | Art. 6(1)(a) GDPR (consent) |
+| Creating events from email content | Art. 6(1)(a) GDPR (consent) |
+| Local caching for offline functionality | Art. 6(1)(b) GDPR (performance of a contract) |
+| Reminder notifications | Art. 6(1)(a) GDPR (consent) |
+
+Consent is given by actively using the "Connect Google Account" function and may be withdrawn at any time by signing out (Disconnect).
+
+---
+
+## 3. Categories of Data Processed
+
+### 3.1 Google Account Data (OAuth2 Authentication)
+
+During the login process, OAuth2 tokens are received from Google and processed:
+
+- **Access Token** – short-lived token for API access
+- **Refresh Token** – long-lived token for automatic renewal of the access token
+- **Token expiry date** (`expiry_date`)
+
+**Storage location:** Exclusively locally on the user's device in the file
+`<Mailspring config directory>/google-calendar-tokens.json`
+
+**Transmission:** Tokens are only exchanged between the user's device and Google's servers. The operator of this plugin has **no access** to this data.
+
+**Requested OAuth2 scopes:**
+- `https://www.googleapis.com/auth/calendar` – read and write access to all calendars
+- `https://www.googleapis.com/auth/calendar.events` – read and write access to all events
+
+### 3.2 Calendar and Event Data
+
+The following data is retrieved from the Google Calendar API and cached locally:
+
+- **Calendar metadata:** calendar ID, name, colour, time zone, default reminders
+- **Event data:** title (summary), description, start and end time, location, attendees (email addresses), reminder settings, recurrence rules, recurring event information, all-day flag
+- **Sync tokens** – internal Google tokens for incremental synchronisation (contain no personal data)
+
+**Storage location:** Locally in `<Mailspring config directory>/google-calendar-cache.json`
+
+### 3.3 User Settings (Preferences)
+
+No personal data in the strict sense, but usage-related configuration data:
+
+- Selected calendar display mode (`month`, `week`, `day`)
+- Zoom level of the day view
+- List of hidden calendar IDs
+
+**Storage location:** Locally in `<Mailspring config directory>/google-calendar-prefs.json`
+
+### 3.4 Email Data (Create Event from Email Feature)
+
+When creating an event from an email, the plugin processes the following email data **exclusively in working memory** (no persistent storage):
+
+- Subject line of the email (to pre-fill the event title)
+- Email addresses of all participants in the email thread (to pre-fill invited attendees)
+- Preview text of the email (up to 200 characters, for the event description)
+
+This data is not stored permanently. It remains in working memory only until the user saves the event or closes the form. When the event is saved, the data is transmitted to the Google Calendar API.
+
+### 3.5 System Notifications (Reminders)
+
+The plugin processes event data in order to display local system notifications (reminders). The following data is processed:
+
+- Event title
+- Time until the event starts
+
+This data does not leave the user's device. It is passed exclusively to the local operating system notification system.
+
+---
+
+## 4. Disclosure to Third Parties
+
+### 4.1 Google LLC
+
+The only third party involved in this data processing is **Google LLC**, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+
+The plugin communicates exclusively with the official Google Calendar API endpoints (v3). The following data transfers take place:
+
+| Direction | Content |
+|---|---|
+| Plugin → Google | OAuth2 code exchange, event creation/modification/deletion, calendar changes |
+| Google → Plugin | OAuth2 tokens, calendar and event data, sync tokens |
+
+Data processing by Google is subject to the [Google Privacy Policy](https://policies.google.com/privacy) and the [Google API Terms of Service](https://developers.google.com/terms). Under the GDPR, Google is to be regarded as a **data processor** within the meaning of Art. 28 GDPR. Google LLC relies on EU Standard Contractual Clauses for data transfers to the USA.
+
+### 4.2 No Further Third Parties
+
+There is **no** data transfer to:
+- Analytics services
+- Crash reporting services
+- The plugin developer or operator
+- Any other third parties
+
+---
+
+## 5. Data Storage and Retention Periods
+
+| File | Content | Storage location | Deletion |
+|---|---|---|---|
+| `google-calendar-tokens.json` | OAuth2 tokens | Locally on the device | Automatically on sign-out ("Disconnect") |
+| `google-calendar-cache.json` | Calendar and event data | Locally on the device | Automatically on sign-out; manual deletion possible at any time |
+| `google-calendar-prefs.json` | Display settings | Locally on the device | Manual; contains no personal data |
+
+All data is stored exclusively locally on the user's device. The storage location is the Mailspring configuration directory:
+
+- **Linux:** `~/.config/Mailspring/` or (Flatpak) `~/.var/app/com.getmailspring.Mailspring/config/Mailspring/`
+- **macOS:** `~/Library/Application Support/Mailspring/`
+- **Windows:** `%APPDATA%\Mailspring\`
+
+---
+
+## 6. Rights of Data Subjects (Art. 15–22 GDPR)
+
+As a data subject, you have the following rights:
+
+### 6.1 Right of Access (Art. 15 GDPR)
+You can obtain information about all stored data at any time. As all data is stored locally on your device, you can view the files mentioned above directly.
+
+### 6.2 Right to Rectification (Art. 16 GDPR)
+Corrections to calendar and event data are made directly through the plugin interface or via Google Calendar. Updated data will be refreshed at the next synchronisation.
+
+### 6.3 Right to Erasure (Art. 17 GDPR)
+You can delete all locally stored data by signing out ("Disconnect") from the plugin. The local files (`google-calendar-tokens.json`, `google-calendar-cache.json`) will be removed automatically. For the deletion of data on Google's servers, contact Google or use the Google account settings.
+
+### 6.4 Right to Restriction of Processing (Art. 18 GDPR)
+You can pause the synchronisation at any time by signing out from the plugin.
+
+### 6.5 Right to Data Portability (Art. 20 GDPR)
+Your calendar and event data can be exported directly via Google Takeout (https://takeout.google.com).
+
+### 6.6 Right to Object (Art. 21 GDPR) / Withdrawal of Consent (Art. 7(3) GDPR)
+Consent may be withdrawn at any time by signing out ("Disconnect") in the plugin. This does not affect the lawfulness of processing carried out prior to withdrawal.
+
+### 6.7 Right to Lodge a Complaint (Art. 77 GDPR)
+You have the right to lodge a complaint with a data protection supervisory authority, in particular in the EU Member State of your habitual residence.
+
+---
+
+## 7. Data Security (Art. 32 GDPR)
+
+The following technical measures are implemented:
+
+- **Encrypted transmission:** All communication with Google APIs takes place exclusively via HTTPS/TLS.
+- **Local storage:** All sensitive data (in particular OAuth2 tokens) is stored exclusively locally and is not transmitted externally.
+- **OAuth2 standard:** Authentication uses the industry-standard OAuth2 flow with short-lived access tokens and refresh tokens. Credentials (passwords) are never processed or stored.
+- **Loopback redirect:** The OAuth2 callback server runs on `127.0.0.1` (loopback address) and is not accessible from outside.
+- **Minimal permissions:** The plugin requests only the OAuth2 scopes necessary for its functionality.
+
+**Note:** The security of locally stored files is the responsibility of the user or the operating system. It is recommended to enable the operating system's disk encryption.
+
+---
+
+## 8. No Automated Decision-Making
+
+The plugin does not make any automated decisions within the meaning of Art. 22 GDPR. All data processing serves exclusively the display and management of calendar content.
+
+---
+
+## 9. No Processing of Children's Data
+
+This plugin is not intended for use by persons under the age of 16 (or the minimum age set by the respective Member State in accordance with Art. 8 GDPR).
+
+---
+
+## 10. Changes to this Privacy Policy
+
+This privacy policy may be updated in the event of significant changes to the plugin (in particular changes to the categories of data processed or the third parties involved). The date of the last amendment is noted at the top of this document.
+
+---
+
+## 11. Contact
+
+For data protection enquiries, please contact the operator of the plugin. For enquiries regarding your data held by Google, use the official Google privacy channels:
+
+- Google Privacy Policy: https://policies.google.com/privacy
+- Google Security Settings: https://myaccount.google.com/security
+- Data Export (Takeout): https://takeout.google.com
+- Manage OAuth2 app permissions: https://myaccount.google.com/permissions

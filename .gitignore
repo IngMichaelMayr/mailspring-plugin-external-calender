@@ -4,6 +4,8 @@ node_modules/
 # Build-Artefakte
 lib/
 tsc-out/
+dist/
+.staging/
 
 # Credentials – NIEMALS committen!
 src/google-auth.ts.local

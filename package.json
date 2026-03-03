@@ -11,10 +11,10 @@
     "default": true
   },
   "scripts": {
-    "build": "tsc && webpack --mode production",
+    "build": "tsc && webpack --mode production && node scripts/package.js",
     "build:dev": "tsc && webpack --mode development",
     "watch": "tsc --watch",
-    "clean": "rm -rf lib tsc-out"
+    "clean": "rm -rf lib tsc-out dist .staging"
   },
   "dependencies": {
     "google-auth-library": "^8.9.0",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^14.18.0",
     "@types/react": "^16.14.0",
+    "archiver": "^7.0.1",
     "dotenv": "^17.3.1",
     "typescript": "^5.0.0",
     "webpack": "^5.105.2",
